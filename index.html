@@ -16,18 +16,6 @@
   <button onclick="getLocation()">取得位置</button> 
 
   <script>
-    // 檢測是否在 LINE WebView 中
-    function isLineWebView() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      return /Line/i.test(userAgent);
-    }
-
-    if (isLineWebView()) {
-      // alert('請在外部瀏覽器（如 Chrome 或 Safari）中開啟以使用相機功能');
-      // 自動重定向到外部瀏覽器中
-      // window.location.href = 'https://krtest.pages.dev'; // 這裡的網址可以改為你的實際網址
-    }
-
     // 開啟相機功能
     function openCamera() {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
