@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>開啟相機</title>
+</head>
+<body>
+  <button onclick="openCamera()">開啟相機</button>
+
+  <script>
+    function openCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+            // 這裡可以加入處理相機串流的程式碼
+            // 例如，將相機畫面顯示在網頁上
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            video.play();
+            document.body.appendChild(video);
+          })
+          .catch(function (error) {
+            console.error('無法開啟相機', error);
+          });
+      } else {
+        alert('您的瀏覽器不支援相機功能');
+      }
+    }
+  </script>
+</body>
+</html>
