@@ -35,16 +35,16 @@
     }
 
     function getLocation() {
-      navigator.permissions.query({ name: 'geolocation' })
+    navigator.permissions.query({ name: 'geolocation' })
       .then(function(permissionStatus) {
         if (permissionStatus.state === 'granted') {
-        // 已經取得授權，可以直接使用位置資訊
-          navigator.geolocation.getCurrentPosition(showPosition, showError); // 注意：这里需要调用 getCurrentPosition() 来获取位置信息
+          // 已經取得授權，可以直接使用位置資訊
+          navigator.geolocation.getCurrentPosition(showPosition, showError); // 呼叫 getCurrentPosition()
         } else if (permissionStatus.state === 'prompt') {
-        // 尚未取得授權，需要請求授權
+          // 尚未取得授權，需要請求授權
           navigator.geolocation.getCurrentPosition(showPosition, showError);
         } else if (permissionStatus.state === 'denied') {
-        // 授權被拒絕，顯示訊息提示使用者
+          // 授權被拒絕，顯示訊息提示使用者
           alert('您已拒絕位置資訊授權，部分功能可能無法正常使用。');
         }
       });
