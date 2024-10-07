@@ -37,9 +37,9 @@
     function getLocation() {
     navigator.permissions.query({ name: 'geolocation' })
       .then(function(permissionStatus) {
-        if (permissionStatus.state === 'granted') {
+        if (permissionStatus.state === 'granted') {  // 修正判斷式
           // 已經取得授權，可以直接使用位置資訊
-          navigator.geolocation.getCurrentPosition(showPosition, showError); // 呼叫 getCurrentPosition()
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
         } else if (permissionStatus.state === 'prompt') {
           // 尚未取得授權，需要請求授權
           navigator.geolocation.getCurrentPosition(showPosition, showError);
