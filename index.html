@@ -2,6 +2,13 @@
 <html>
 <head>
   <title>開啟相機</title>
+  <style>
+    button {
+      width: 200px; 
+      height: 50px; 
+      font-size: 18px; 
+    }
+  </style>
 </head>
 <body>
   <button onclick="openCamera()">開啟相機</button>
@@ -9,10 +16,8 @@
   <script>
     function openCamera() {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }) 
           .then(function (stream) {
-            // 這裡可以加入處理相機串流的程式碼
-            // 例如，將相機畫面顯示在網頁上
             const video = document.createElement('video');
             video.srcObject = stream;
             video.play();
