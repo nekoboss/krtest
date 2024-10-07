@@ -7,11 +7,13 @@
       width: 200px; 
       height: 50px; 
       font-size: 18px; 
+      margin-bottom: 10px; /* 添加按鈕間距 */
     }
   </style>
 </head>
 <body>
   <button onclick="openCamera()">開啟相機</button>
+  <button onclick="getLocation()">取得位置</button> 
 
   <script>
     // 檢測是否在 LINE WebView 中
@@ -21,9 +23,9 @@
     }
 
     if (isLineWebView()) {
-      alert('請在外部瀏覽器（如 Chrome 或 Safari）中開啟以使用相機功能');
+      // alert('請在外部瀏覽器（如 Chrome 或 Safari）中開啟以使用相機功能');
       // 自動重定向到外部瀏覽器中
-      window.location.href = 'krtest.pages.dev';  // 這裡的網址可以改為你的實際網址
+      // window.location.href = 'https://krtest.pages.dev'; // 這裡的網址可以改為你的實際網址
     }
 
     // 開啟相機功能
@@ -43,7 +45,36 @@
         alert('您的瀏覽器不支援相機功能');
       }
     }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else { 
+        alert("您的瀏覽器不支援地理位置定位功能");
+      }
+    }
+
+    function showPosition(position) {
+      alert("你的座標位置：\n緯度: " + position.coords.latitude + 
+            "\n經度: " + position.coords.longitude);
+    }
+
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("您拒絕了位置分享的請求。");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("無法取得位置資訊。");
+          break;
+        case error.TIMEOUT:
+          alert("取得位置資訊逾時。");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("發生未知的錯誤。");
+          break;
+      }
+    }
   </script>
 </body>
 </html>
-
